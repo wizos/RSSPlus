@@ -1,5 +1,4 @@
 var Ruler = (function() {
-    //'use strict';
     function add(title, link, feeds) {
         feeds.push({
             "title": title,
@@ -10,6 +9,7 @@ var Ruler = (function() {
 
     function find(url, res = "") {
         var feeds = [];
+        var m;
         if ((m = url.match(/36kr\.com\/newsflashes/is))) {
             //feeds.push({"https://rsshub.app/36kr/newsflashes":"快讯 - 36氪"});
             return add("快讯 - 36氪", "https://rsshub.app/36kr/newsflashes", feeds);
