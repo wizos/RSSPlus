@@ -1,5 +1,5 @@
 var Ruler = (function() {
-    'use strict';
+    //'use strict';
     function add(title, link, feeds) {
         feeds.push({
             "title": title,
