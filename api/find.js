@@ -10,8 +10,9 @@ export default function handler(request, response) {
 	}
 
 	if(!url){
-		return new Response('Missing parameter: url.', {status: 500});
+		response.status(500).end("Missing parameter: url.");
 	}else{
-		response.status(200).text("测试成功");
+		response.status(200).end("测试成功");
+		//return new Response('Missing parameter: url.', {status: 500});
 	}
 }
