@@ -1,0 +1,9 @@
+{
+    "version": 2,
+	"routes": [{
+        { "src": "/api/.*", "dest": "/api/vercel.js" },
+        { "src": "/assets/Ruler.js", "dest": "/Ruler.js" },
+        { "src": "/Ruler.js", "dest": "/Ruler.js" },
+        { "src": "/.*", "dest": "/api/vercel.js" }
+	}]
+}

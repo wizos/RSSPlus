@@ -23,7 +23,6 @@ var Ruler = (function() {
         // UP主前缀1：https://api.prprpr.me/bilibili2rss/user/，https://rsshub.app/bilibili/user/video/ [作者：github.com/DIYgod]
         // UP主前缀2：https://api.lim-light.com/bilibili/rss/?id=
         // UP主前缀3：https://script.google.com/macros/s/AKfycbzojPIDsSo3fC2sb8xLWnXh9YwSUC_TsvSe9araLFuwnGLd8CXP/exec?mid=
-        // UP主前缀4：http://rss.wizos.me/bilibili.php?id= , [作者：github.com/Wizos]
         if ((m = url.match(/space\.bilibili\.com\/(\d+)/s))) {
             add("UP主的投稿视频", "https://rsshub.app/bilibili/user/video/" + m[1], feeds);
             add("UP主的专栏文章", "https://rsshub.app/bilibili/user/article/" + m[1], feeds);
@@ -120,13 +119,15 @@ var Ruler = (function() {
         // 仓库 commits: https://github.com/:owner/:repo/commits.atom
         // 用户动态: https://github.com/:user.atom
         if ((m = url.match(/github\.com\/([^?]+?)\/([^?]+?)(\?|\/|$)/s))) {
-            return add("RSS", "https://github.com/" + m[1] + "/" + m[2] + "/releases.atom", feeds);
-            //return "https://github.com/m[1]/m[2]/releases.atom";
-            //return "https://github.com/m[1]/m[2]/commits.atom";
-            //return "https://github.com/m[1].atom";
-            //return "https://rsshub.app/github/issue/m[1]/m[2]";
-            //return "https://rsshub.app/github/stars/m[1]/m[2]";
-            //return "https://rsshub.app/github/user/followers/m[1]";
+            add("Releases RSS", "https://github.com/" + m[1] + "/" + m[2] + "/releases.atom", feeds);
+            add("Commits RSS", "https://github.com/" + m[1] + "/" + m[2] + "/commits.atom", feeds);
+            add("RSS", "https://github.com/" + m[1] + ".atom", feeds);
+
+            add("Followers RSS", "https://rsshub.app/github/user/followers/" + m[1], feeds);
+            add("Stars RSS", "https://rsshub.app/github/stars/" + m[1] + "/" + m[2], feeds);
+            add("Issue RSS", "https://rsshub.app/github/issue/" + m[1] + "/" + m[2], feeds);
+
+            return feeds;
         }
 
         //#示例：https: //henix.github.io/feeds/weixin.sogou.wxieshuo/index.xml
@@ -171,14 +172,6 @@ var Ruler = (function() {
         if ((m = url.match(/music\.163\.com\/#\/playlist\?id=(\d+)/s))) {
             return add("RSS", "https://rsshub.app/ncm/playlist/" + m[1], feeds);
         }
-
-        //if ( (m = url.match(/newrank\.cn\/public\/info\/detail\.html\?account=([^?]+?)(\?|\/|$)/s) ) ) {
-        //    if(is_admin){
-        //        return "http://rss.wizos.me/weixin.php?id=".strtolower(m[1], feeds);
-        //    }else{
-        //        return "http://rss.wizos.me/anyv.php?id=".strtolower(m[1], feeds);
-        //    }
-        //}
 
         //#【直播间】
         //eg: https://www.panda.tv/10300
