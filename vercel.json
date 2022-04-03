@@ -1,17 +1,17 @@
 {
 	"rewrites": [
 		{
-			"source": "/api/(.*)",
-			"destination": "/api/vercel.js"
+			"source": "/api/find",
+			"destination": "/api/find.js"
+		}, {
+			"source": "/api/find.php",
+			"destination": "/api/find.js"
 		}, {
 			"source": "/assets/Ruler.js",
 			"destination": "/Ruler.js"
 		}, {
-			"source": "/Ruler.js",
-			"destination": "/Ruler.js"
-		}, {
 			"source": "/(.*)",
-			"destination": "/api/vercel.js"
+			"destination": "/index.html"
 		}
 	]
 }

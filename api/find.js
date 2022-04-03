@@ -1,7 +1,14 @@
 require('../Ruler');
 
 export default function handler(request, response) {
-	const url = request.query.url ? request.query.url : request.body.get("url");
+	let url;
+	if(request.query){
+		url = request.query.url;
+	}
+	if(!url && request.body){
+		url = request.body.get("url");
+	}
+
 	if(!url){
 		return response = new Response('Missing parameter: url.', {status: 500});
 	}else{
