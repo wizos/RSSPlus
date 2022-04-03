@@ -1,8 +1,17 @@
 {
-  "rewrites": [
-        { "src": "/api/.*", "dest": "/api/vercel.js" },
-        { "src": "/assets/Ruler.js", "dest": "/Ruler.js" },
-        { "src": "/Ruler.js", "dest": "/Ruler.js" },
-        { "src": "/.*", "dest": "/api/vercel.js" }
-  ]
+	"rewrites": [
+		{
+			"source": "/api/.*",
+			"destination": "/api/vercel.js"
+		}, {
+			"source": "/assets/Ruler.js",
+			"destination": "/Ruler.js"
+		}, {
+			"source": "/Ruler.js",
+			"destination": "/Ruler.js"
+		}, {
+			"source": "/.*",
+			"destination": "/api/vercel.js"
+		}
+	]
 }
