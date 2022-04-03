@@ -1,7 +1,7 @@
 {
 	"rewrites": [
 		{
-			"source": "/api/.*",
+			"source": "/api/(.*)",
 			"destination": "/api/vercel.js"
 		}, {
 			"source": "/assets/Ruler.js",
@@ -10,7 +10,7 @@
 			"source": "/Ruler.js",
 			"destination": "/Ruler.js"
 		}, {
-			"source": "/.*",
+			"source": "/(.*)",
 			"destination": "/api/vercel.js"
 		}
 	]
