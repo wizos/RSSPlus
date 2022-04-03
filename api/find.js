@@ -10,9 +10,9 @@ export default function handler(request, response) {
 	}
 
 	if(!url){
-		response.status(500).end("Missing parameter: url.");
+		response.status(500).send("Missing parameter: url.");
 	}else{
-		response.status(200).end("测试成功");
+		response.status(200).send(Ruler.find(url));
 		//return new Response('Missing parameter: url.', {status: 500});
 	}
 }
