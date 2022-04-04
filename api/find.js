@@ -1,4 +1,7 @@
-require('../Ruler');
+var path = require('path'), fs = require('fs');
+var root = path.join(path.dirname(fs.realpathSync(__filename)), '../'); 
+var emberjs = fs.readFileSync( root  + '/Ruler.js', 'utf8');
+eval(emberjs);
 
 export default function handler(request, response) {
 	let url;
@@ -13,6 +16,5 @@ export default function handler(request, response) {
 		response.status(500).send("Missing parameter: url.");
 	}else{
 		response.status(200).send(Ruler.find(url));
-		//return new Response('Missing parameter: url.', {status: 500});
 	}
 }
