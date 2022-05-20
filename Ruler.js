@@ -1,16 +1,16 @@
 {
     find: function (url, res = "") {
         var feeds = [];
-	    function add (title, link) {
-	        feeds.push({
-	            "title": title,
-	            "link": link
-	        });
-	        return feeds;
-	    };
+        function add (title, link) {
+            feeds.push({
+                "title": title,
+                "link": link
+            });
+            return feeds;
+        };
+
         var m;
         if ((m = url.match(/36kr\.com\/newsflashes/is))) {
-            //feeds.push({"https://rsshub.app/36kr/newsflashes":"快讯 - 36氪"});
             return add("快讯 - 36氪", "https://rsshub.app/36kr/newsflashes");
         }
         if ((m = url.match(/36kr\.com\/search\/articles\/([^?]+?)(\?|\/|$)/is))) {
@@ -35,10 +35,8 @@
 
         // 示例：https://www.bilibili.com/video/av33147686
         if (url.match(/bilibili\.com\/video\//s) && res) {
-            console.log("内容：" + res);
-            let tmp1 = res.match(/space\.bilibili\.com\/(\d+)/s);
-            let tmp2 = res.match(/"name":"(.*?)"/s);
-            return add(tmp2[1] + "的投稿视频", "https://rsshub.app/bilibili/user/video/" + tmp1[1]);
+            let tmp = res.match(/class="up-info_right".+?href="\/\/space.bilibili.com\/(.+?)".+?>(.+?)</s);
+            return add(decodeURIComponent(tmp[2].trim()) + "的投稿视频", "https://rsshub.app/bilibili/user/video/" + tmp[1]);
         }
 
         //# 【番剧】
