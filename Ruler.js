@@ -123,7 +123,6 @@
             add("Followers RSS", "https://rsshub.app/github/user/followers/" + m[1]);
             add("Stars RSS", "https://rsshub.app/github/stars/" + m[1] + "/" + m[2]);
             add("Issue RSS", "https://rsshub.app/github/issue/" + m[1] + "/" + m[2]);
-
             return feeds;
         }
 
@@ -182,7 +181,6 @@
             add("热门话题", "http://readhub.bayes.cafe/rss?channel=topics");
             add("科技动态", "http://readhub.bayes.cafe/rss?channel=news");
             add("开发者资讯", "http://readhub.bayes.cafe/rss?channel=technews");
-
             return feeds;
         }
 
@@ -241,9 +239,8 @@
 
         // 示例：https://twitter.com/Haneristy
         if ((m = url.match(/twitter\.com\/([^?]+?)(\?|\/|$)/s))) {
-            add("动态", "http://www.twitrss.me/twitter_user_to_rss/?user=" + m[1]);
+            // add("动态", "http://www.twitrss.me/twitter_user_to_rss/?user=" + m[1]);
             add("动态", "https://rsshub.app/twitter/user/" + m[1]);
-
             return feeds;
         }
 
@@ -252,18 +249,31 @@
         // 示例1：https://www.v2ex.com/?tab=apple
         // 示例2：https://www.v2ex.com/go/apple
         if ((m = url.match(/v2ex\.com\/\?tab=([^?]+?)(\?|\/|$)/s)) || (m = url.match(/v2ex\.com\/go\/([^?]+?)(\?|\/|$)/s))) {
-            return add("RSS", "https://www.v2ex.com/feed/" + m[1] + ".xml");
+            add("RSS", "https://www.v2ex.com/feed/" + m[1] + ".xml");
+
+            add("最新主题", "https://rsshub.app/v2ex/topics/latest");
+            add("最热主题", "https://rsshub.app/v2ex/topics/hot");
+            return feeds;
         }
 
         // 【V2ex帖子】
         // 示例：https://www.v2ex.com/t/423065
         if ((m = url.match(/v2ex\.com\/t\/(\d+)/s))) {
-            return add("RSS", "https://rss.lilydjwg.me/v2ex/" + m[1]);
+            add("帖子 RSS", "https://rss.lilydjwg.me/v2ex/" + m[1]);
+            add("帖子 RSS", "https://rsshub.app/v2ex/post/" + m[1]);
+
+            add("最新主题", "https://rsshub.app/v2ex/topics/latest");
+            add("最热主题", "https://rsshub.app/v2ex/topics/hot");
+            return feeds;
         }
         // 【V2ex用户】
         // https://www.v2ex.com/member/xuanwu
         if ((m = url.match(/v2ex\.com\/member\/([^?]+?)(\?|\/|$)/s))) {
-            return add("RSS", "https://www.v2ex.com/feed/member/" + m[1] + ".xml");
+            add("RSS", "https://www.v2ex.com/feed/member/" + m[1] + ".xml");
+
+            add("最新主题", "https://rsshub.app/v2ex/topics/latest");
+            add("最热主题", "https://rsshub.app/v2ex/topics/hot");
+            return feeds;
         }
 
         // 示例1：http://weibo.com/u/1452388845
@@ -375,10 +385,19 @@
             return feeds;
         }
 
+        // 示例：https://github.com/orgs/community/discussions
+        // 来源：https://github.com/community/community/discussions/31#discussioncomment-4048867
+        if ((m = url.match(/github\.com\/([\w\W]+)\/([\w\W]+)\/discussions(\?|\/|$)/is))) {
+            let owner = m[1];
+            let repo = m[2];
+
+            add("Discussions RSS", "https://github.com/" + owner + "/" + repo + "discussions.atom");
+            return feeds;
+        }
+
         //eg: http://search.smzdm.com/?c=home&s=%E5%A5%B3%E8%A3%85&order=time&v=b
         if ((m = url.match(/search\.smzdm\.com\/\?.*?[\?&]s=([^?]+?)(\?|\/|&|$)/is))) {
             add("关键词：" + decodeURI(m[1]), "https://rsshub.app/smzdm/keyword/" + m[1]);
-
             return feeds;
         }
     }
