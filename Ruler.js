@@ -400,5 +400,31 @@
             add("关键词：" + decodeURI(m[1]), "https://rsshub.app/smzdm/keyword/" + m[1]);
             return feeds;
         }
+
+        if (url.match(/nytimes\.com\/section\/business\/economy(\?|\/|$)/is)) {
+            add("Business > Economy RSS", "https://rss.cmoog.io/nyt/economy.atom");
+            add("Business RSS", "https://rss.cmoog.io/nyt/business.atom");
+            return feeds;
+        }
+        if (url.match(/nytimes\.com\/section\/business(\?|\/|$)/is)) {
+            add("Business RSS", "https://rss.cmoog.io/nyt/business.atom");
+            return feeds;
+        }
+        if (url.match(/nytimes\.com\/column\/ezra-klein(\?|\/|$)/is)) {
+            add("Ezra Klein RSS", "https://rss.cmoog.io/nyt/opinion/ezra-klein.atom");
+            return feeds;
+        }
+        if (url.match(/nytimes\.com\/ca\/section\/us(\?|\/|$)/is)) {
+            add("U.S. News RSS", "https://rss.cmoog.io/nyt/us.atom");
+            return feeds;
+        }
+        if (url.match(/nytimes\.com\/ca\/section\/politics(\?|\/|$)/is)) {
+            add("U.S. > Politics RSS", "https://rss.cmoog.io/nyt/politics.atom");
+            return feeds;
+        }
+        if (url.match(/compactmag\.com(\?|\/|$)/is)) {
+            add("Compact Magazine RSS", "https://rss.cmoog.io/compact.atom");
+            return feeds;
+        }
     }
 }
