@@ -426,5 +426,6 @@
             add("Compact Magazine RSS", "https://rss.cmoog.io/compact.atom");
             return feeds;
         }
+        return feeds;
     }
 }
