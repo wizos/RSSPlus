@@ -426,6 +426,10 @@
             add("Compact Magazine RSS", "https://rss.cmoog.io/compact.atom");
             return feeds;
         }
+        if (url.match(/youtube\.com\/feeds\/videos\.xml\?channel_id=([^?]+?)(\?|\/|$)/is)) {
+            add("Youtube Channel RSS", url);
+            return feeds;
+        }
         return feeds;
     }
 }
